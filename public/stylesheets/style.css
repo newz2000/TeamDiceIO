@@ -1,3 +1,6 @@
+@import url(bootstrap.min.css);
+@import url(bootstrap-theme.min.css);
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -5,4 +8,18 @@ body {
 
 a {
   color: #00B7FF;
+}
+
+.dice {
+	border: 1px solid black;
+	border-radius: 8px;
+	height: 100px;
+	text-align: center;
+	font-size: 32px;
+	margin: 50px 10px;
+	padding-top: 30px;
+}
+#displaydie7 {
+	background-color: rgba(200, 200, 200, 0.5);
+	border-radius: 33%;
 }
