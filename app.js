@@ -77,7 +77,9 @@ app.use(function(err, req, res, next) {
     });
 });
 
-http.listen(process.env.port || 3000, function() {
+var port = Number(process.env.PORT || 5000);
+
+http.listen(port, function() {
   console.log('Listening on port %d', http.address().port);
 });
 
