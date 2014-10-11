@@ -10,6 +10,8 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,6 +25,23 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+    socket.on('roll', function(msg){
+
+        io.emit('roll message', {
+            die1: Math.floor((Math.random() * 6) + 1),
+            die2: Math.floor((Math.random() * 6) + 1),
+            die3: Math.floor((Math.random() * 6) + 1),
+            die4: Math.floor((Math.random() * 6) + 1),
+            die5: Math.floor((Math.random() * 6) + 1),
+            die6: Math.floor((Math.random() * 6) + 1),
+            die7: Math.floor((Math.random() * 12) + 1)
+        });
+
+    });
+});
 
 app.use('/', routes);
 app.use('/users', users);
@@ -58,5 +77,8 @@ app.use(function(err, req, res, next) {
     });
 });
 
+http.listen(3000, function() {
+  console.log('Listening on port %d', http.address().port);
+});
 
-module.exports = app;
+// module.exports = app;
