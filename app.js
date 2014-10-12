@@ -28,17 +28,43 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection', function(socket){
   console.log('a user connected');
-    socket.on('roll', function(msg){
+    socket.on('roll', function(dice){
+        console.log(dice);
 
-        io.emit('roll message', {
-            die1: Math.floor((Math.random() * 6) + 1),
-            die2: Math.floor((Math.random() * 6) + 1),
-            die3: Math.floor((Math.random() * 6) + 1),
-            die4: Math.floor((Math.random() * 6) + 1),
-            die5: Math.floor((Math.random() * 6) + 1),
-            die6: Math.floor((Math.random() * 6) + 1),
-            die7: Math.floor((Math.random() * 12) + 1)
-        });
+        var rolledDice = {};
+
+        if (dice.die1) {
+            rolledDice.die1 = Math.floor((Math.random() * 6) + 1);
+        }
+        if (dice.die2) {
+            rolledDice.die2 = Math.floor((Math.random() * 6) + 1);
+        }
+        if (dice.die3) {
+            rolledDice.die3 = Math.floor((Math.random() * 6) + 1);
+        }
+        if (dice.die4) {
+            rolledDice.die4 = Math.floor((Math.random() * 6) + 1);
+        }
+        if (dice.die5) {
+            rolledDice.die5 = Math.floor((Math.random() * 6) + 1);
+        }
+        if (dice.die6) {
+            rolledDice.die6 = Math.floor((Math.random() * 6) + 1);
+        }
+        if (dice.die7) {
+            rolledDice.die7 = Math.floor((Math.random() * 12) + 1);
+        }
+
+            // die1: Math.floor((Math.random() * 6) + 1),
+            // die2: Math.floor((Math.random() * 6) + 1),
+            // die3: Math.floor((Math.random() * 6) + 1),
+            // die4: Math.floor((Math.random() * 6) + 1),
+            // die5: Math.floor((Math.random() * 6) + 1),
+            // die6: Math.floor((Math.random() * 6) + 1),
+            // die7: Math.floor((Math.random() * 12) + 1)
+        
+
+        io.emit('roll message', rolledDice);
 
     });
 });
